@@ -22,11 +22,11 @@ class HttpHeaderScanner:
             for ele in info_list:
                 self.__headers[ele[0]] = ele[1]
 
-        except Exception as e:
+        except IOError as e:
 
             print('Warning: Connection Error!!!')
             print(e)
-            raise ConnectionException(e)
+            raise sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2]
 
     def get_server_field(self):
         """Return the server fields in the HTTP header
