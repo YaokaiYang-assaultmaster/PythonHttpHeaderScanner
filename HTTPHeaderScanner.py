@@ -26,6 +26,7 @@ class HttpHeaderScanner:
 
             print('Warning: Connection Error!!!')
             print(e)
+            raise ConnectionException(e)
 
     def get_server_field(self):
         """Return the server fields in the HTTP header
@@ -34,7 +35,9 @@ class HttpHeaderScanner:
             String: The value of the server field, if not exists, return "None".
         """
 
-        if 'server' in self.__headers:
+        if len(self.__headers) == 0:
+            return 'None'
+        elif 'server' in self.__headers:
             return ('server', self.__headers['server'])
         else:
             return 'None'
@@ -43,8 +46,11 @@ class HttpHeaderScanner:
         """Print out all the fields of the http header
         
         """
+        if len(self.__headers) == 0:
+            print('Connection Error')
         for ele in self.__headers:
-            print(str(ele) + ': ' + str(self.__headers[ele]))
+            print(str(ele) + ': ' + str(self.__headers[ele]) + '\n')
+
 
     def get_headers(self):
         """Return a dictionary of headers fields in (fieldname, value) pair
@@ -53,17 +59,23 @@ class HttpHeaderScanner:
             Dict: A dictionary of (field name, corresponding value) pairs
         """
         tmp = dict()
+        if len(self.__headers) == 0:
+            return tmp
 
         for key in self.__headers:
             tmp[key] = self.__headers[key]
 
         return tmp
 
-
     def get_header_count(self):
         """Return the total number of different fields in the header
         
         Returns:
-            int: number of the header fields
+            int: number of the header fields. If connection error occured, return -1
         """
+        if len(self.__headers) == 0:
+            return -1
         return len(self.__headers)
+
+
+
