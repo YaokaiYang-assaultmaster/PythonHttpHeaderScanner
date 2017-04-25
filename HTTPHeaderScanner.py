@@ -2,7 +2,8 @@ import urllib2
 
 class HttpHeaderScanner:
 
-    __headers = {}
+    def __init__(self):
+        self.__headers = {}
 
     def connect_server(self, website):
         """Connect a server of which the header fields we want to check
