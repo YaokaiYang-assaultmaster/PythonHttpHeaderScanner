@@ -1,6 +1,8 @@
 # PythonHttpHeaderScanner
 A small python module that could get _HTTP headers_ from server response.
 
+![example result](https://github.com/YaokaiYang-assaultmaster/PythonHttpHeaderScanner/blob/master/example_result.png)
+
 ## Usage
 - First initialize a instance of the HttpHeaderScanner class by `new_scanner = HttpHeaderScanner()`
 - Then connect to the server of which the responding header we want to check by `new_scanner.connect_server([website domain])`. `[website domain]`is the string domain name of the website , either with or without protocol (i.e. `http(s)://`).
