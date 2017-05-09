@@ -13,6 +13,7 @@ def main():
         print(str(ele) + ': ' + str(header_dict[ele]))
 
     header_count = new_scanner.get_header_count()
+
     print('There is %d different header fields in total from HTTP response of website %s'
           % (header_count, target_website))
 
